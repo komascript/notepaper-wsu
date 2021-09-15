@@ -30,7 +30,7 @@ Frage kommt, habe ich mit Hilfe von Inkscape einfach ein neues Beispiellogo
 [PNG](wsuSig4cW-new.png) und als [EPS](wsuSig4cW-new.eps) verfügbar und sieht
 so aus:
 
-[[wsuSig4cW-new.svg]]
+![[Ersatzlogo](wsuSig4cW-new.svg)](wsuSig4cW-new.svg)
 
 Es sei darauf hingewiesen, dass durch die Verwendung des Ersatzlogos
 geringfügige Abweichungen bei den Farben auftreten. Entsprechende Anpassungen
@@ -114,7 +114,7 @@ Stege zu betrachten. LaTeX selbst unterscheidet vertikal zwischen oberem
 Rand, Kopfzeilen, Abstand zum Textbereich, Textbereich und Abstand zur
 Grundlinie der Fußzeilen:
 
-[[Seitenspiegel.png]]
+![Schematische Darstellung des Seitenspiegels](Seitenspiegel.png)
 
 Der untere Rand ergibt sich implizit. Eine definierte Höhe für den Fuß
 existiert im Gegensatz zur definierten Höhe des Kopfes nicht. Horizontal wird
