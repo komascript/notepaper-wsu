@@ -1,0 +1,239 @@
+%
+% wsu.lco
+% Copyright (c) 2012–2021 Markus Kohm
+%                         komascript at gmx dot info
+%
+% This work may be distributed and/or modified under the conditions of
+% the LaTeX Project Public License, version 1.3c of the license.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3c or later is part of all distributions of LaTeX
+% version 2005/12/01 or later and of this work.
+%
+% This work has the LPPL maintenance status "maintained".
+%
+% The work consists of the files `wsu.lco', `wsu-publications.lco',
+% `wsu-letter.tex', `wsuSig4cW-new.svg', `wsuSig4cW-new.png',
+% `wsuSig4cW-new.eps', `README.md' and `LIESMICH.md'.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ProvidesFile{wsu.lco}[2021/09/15 v1.03 
+  unsupported letter class option for Washington State University]
+
+\LetterOptionNeedsPapersize{wsu}{letter}
+
+% Two helper command for warning and error messages at LCO files:
+\providecommand*\LCOWarning[2]{%
+  \GenericWarning{%
+    (#1)\@spaces\@spaces\@spaces\@spaces\@spaces\@spaces\@spaces
+  }{%
+    Letter class option #1 Warning: #2%
+  }%
+}
+\providecommand*\LCOError[3]{%
+  \GenericError{%
+    (#1)\@spaces\@spaces\@spaces\@spaces\@spaces\@spaces\@spaces
+  }{%
+    Letter class option #1 Error: #2%
+  }{%
+    See the #1 package documentation for explanation.%
+  }{#3}%
+}
+
+% Defined the defaults for margins etc.
+% Note: A better solution would be to use package geometry for this.
+\topmargin=-.75in% plus the 1in from the default offset
+\headheight=0.5in
+\headsep=.25in
+\oddsidemargin=.5in% plus the 1in from the default offset
+\textwidth=\dimexpr\paperwidth-1.5in-.625in\relax
+\ifdim\textwidth>6in
+  \textwidth=6in
+\fi
+\evensidemargin=-.375in% plus the 1in from the default offset
+% Note: Following values are astimated, because no information found
+\textheight=\dimexpr\paperheight-1in-1.5in\relax
+\footskip=1in
+\topskip=8.4bp% 0.7 * 12bp (should be \ht\strutbox)
+\activateareas% see KOMA-Script manual
+
+% Late we need an option to decide, whether or not to use ITC Stone Serif.
+% Default is use of ITC Stone Serif, the option may be used to reactivate it.
+\DefineFamily{wsu}
+\DefineFamilyMember[.wsu.lco]{wsu}
+\FamilyBoolKey[.wsu.lco]{wsu}{nostone}{@nostone}
+\FamilyProcessOptions[.wsu.lco]{wsu}
+
+% Now switch to ITC Stone Serif or optionally don't switch.
+\if@nostone\else
+  \if@atdocument
+    \scr@ifundefinedorrelax{setmainfont}{%
+      \LCOWarning{wsu}{%
+        You've not loaded package `fontspec',\MessageBreak
+        and know it's to late to do so.\MessageBreak
+        Because of this option `nostone' has\MessageBreak
+        been activated%
+      }%
+      \Family@Options{wsu}{nostone}{}%
+    }%
+  \else
+    \RequirePackage{fontspec}%
+    % I'm using the TrueType ITC Stone Serif LT instead of the original
+    % OpenType font ITC Stone Serif.  If you have the original OTF, you may
+    % replace this.
+    \KOMAoptions{fontsize=10bp}% gives us 10bp on 12bp
+    \setmainfont[Scale=0.95,
+%      BoldFont=(* Semibold),% change this to use Bold instead of Semibold
+%      ItalicFont=(* Italic),
+%      BoldItalicFont=(* Semibold Italic),% change this to use Bold instead of
+%                                % Semibold
+%      SlantedFont=(* Italic),% we use italic instead of slanted
+%      BoldSlantedFont=(* Semibold Italic)
+    ]{ITC Stone Serif LT}% gives us 9.5bp on 12bp
+    \selectfont
+  \fi
+\fi
+
+% Paragraphs:
+% The text shouldn't be justified and parskip instead of parindent should be
+% used:
+\KOMAoption{parskip}{full}
+\raggedright
+\let\raggedsignature\raggedright
+
+% This LCO file needs the graphicx package and either color or xcolor.
+% But if the package will be loaded at the document body, we cannot load the
+% package. In this case an error will be send.
+\if@atdocument
+  \scr@ifundefinedorrelax{ver@graphicx.sty}{%
+    \LCOError{wsu}{%
+      package `graphicx' missing%
+    }{%
+      This LCO needs package `graphicx', but it's to late to load it
+      myself.\MessageBreak
+      You either should load this LCO before
+      \string\begin{document},\MessageBreak
+      or load package `graphicx' yourself.%
+    }%
+  }{}%
+  \scr@ifundefinedorrelax{definecolor}{%
+    \LCOError{wsu}{%
+      command `\string\definecolor' missing%
+    }{%
+      This LCO needs command \string\definecolor, but it's to late to load a
+      package myself.\MessageBreak
+      You either should load this LCO before
+      \string\begin{document},\MessageBreak
+      or load package `xcolor' or `color' yourself.%
+    }%
+  }%
+\else
+  \RequirePackage{graphicx}%
+  \IfFileExists{xcolor.sty}{\RequirePackage{xcolor}}{\RequirePackage{color}}%
+\fi
+
+\definecolor{wsuSig4cW}{rgb}{0.803922,0.462745,0.541176}
+\setkomavar{fromlogo}{%
+  \includegraphics[height=.5in]{wsuSig4cW-new}%
+}
+
+% We don't want foldmarks and don't want a return to sender information:
+\KOMAoptions{foldmarks=false,backaddress=false}
+
+% The position and size of the head. Note, that we move the logo to the left
+% by 1.03in relative to the reference line or the addressee (or the text area)
+\setplength{firstheadvpos}{1in}
+\setplength{firstheadhpos}{\dimexpr 2in-1.03in\relax}
+\setplength{firstheadwidth}{%
+  \dimexpr\paperwidth-\useplength{firstheadhpos}-.625in\relax
+}
+
+% Size and position of the reference line. Note: It's recommended to set only
+% the date at the reference line.
+\KOMAoption{refline}{dateleft}
+\setplength{refvpos}{2in}
+\setplength{refaftervskip}{8\baselineskip}
+\setplength{refhpos}{\dimexpr\oddsidemargin+1in\relax}
+
+% Size an position of the addressee
+\setplength{toaddrhpos}{\useplength{refhpos}}
+\setplength{toaddrvpos}{\dimexpr\useplength{refvpos}+2\baselineskip\relax}
+\setplength{toaddrheight}{5\baselineskip}
+\setplength{backaddrheight}{0pt}
+
+% We need an additional variable for the head
+\newkomavar{office}
+\setkomavar{firsthead}{%
+  \color{wsuSig4cW}\footnotesize
+% Now place a rule into the head. The rule should be above the office text, so
+% we raise it, using \raisebox. We put the rule right aligned with the width
+% of the head without the predefined margins (1.5in left and .625in right).
+% The two \makebox commands are used because the rule should be at the
+% background. The line thickness depends on the logo. In my example .5bp is a
+% good value.
+  \makebox[0pt][l]{%
+    \makebox[\useplength{firstheadwidth}][r]{%
+      \raisebox{\baselineskip}{%
+        \rule{\dimexpr\paperwidth-1.5in-.625in\relax}{.5bp}%
+      }%
+    }%
+  }%
+  % Left align and raise the logo to the wanted position. 
+  % The \baselineskip and .5bp are from the line definition above. 
+  % The -.31in depend on the logo. In my example this is a good value.
+  \raisebox{\dimexpr \baselineskip-.31in+.5bp\relax}{%
+    \usekomavar{fromlogo}
+  }%
+  % Right align the office information.
+  \hfill
+  \begin{tabular}[t]{@{}r@{}}
+    \usekomavar{office}
+  \end{tabular}
+}
+
+% Distance between the close and the signature:
+\setplength{sigbeforevskip}{5\baselineskip}
+
+% Foot size is almost same like the head:
+\setplength{firstfootvpos}{\dimexpr\paperheight-.5in-\dp\strutbox\relax}
+\setplength{firstfoothpos}{\useplength{refhpos}}
+\setplength{firstfootwidth}{\textwidth}
+
+% The foot defintion is really simple. Just place all the material, that has
+% been defined to the bottom of the foot. Somehow tricky is the handling of
+% the separator, that should only be placed, if at least one element has been
+% placed already and if the current element is not empty. With \elementsep and
+% \xelementsep two local definitions will be used for this.
+\setkomavar{firstfoot}{%
+  \parbox[b][0pt][b]{\textwidth}{\raggedright\footnotesize\color{wsuSig4cW}%
+    \Ifkomavarempty{fromaddress}{}{%
+      {\renewcommand*{\\}[1][]{, \ignorespaces}\usekomavar{fromaddress}}\\
+    }%
+    \newcommand*{\elementsep}{}%
+    \newcommand*{\xelementsep}{\ \textbullet\ }%
+    \Ifkomavarempty{fromphone}{}{%
+      \elementsep
+      \usekomavar{fromphone}%
+      \let\elementsep\xelementsep}%
+    \Ifkomavarempty{fromfax}{}{%
+      \elementsep
+      \usekomavar*{fromfax}: \usekomavar{fromfax}%
+      \let\elementsep\xelementsep}%
+    \Ifkomavarempty{fromemail}{}{%
+      \elementsep
+      \usekomavar{fromemail}%
+      \let\elementsep\xelementsep}%
+    \Ifkomavarempty{fromurl}{}{%
+      \elementsep
+      \usekomavar{fromurl}}%
+  }%
+}
+
+% That's all!
+\endinput
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "wsu-letter.tex"
+%%% End:

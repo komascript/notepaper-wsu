@@ -266,6 +266,9 @@ TSWLatexianTemp*
 # TeXnicCenter
 *.tps
 
+# emacs/linux backup files
+*~
+
 # auto folder when using emacs and auctex
 ./auto/*
 *.el
