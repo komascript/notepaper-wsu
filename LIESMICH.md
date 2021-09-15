@@ -3,7 +3,7 @@
 Ziel dieses Projekts ist die Erstellung einer *Letter Configuration Option*
 (LCO-Datei) zur Umsetzung einer Corporate Identity. Als Vorlage für diese
 Beispielimplementierung dient das Briefpapier der Washington State
-University. Dieses Beispiel basiert meinerm Artikel in [»Die TeXnische
+University. Dieses Beispiel basiert meinem Artikel in [»Die TeXnische
 Komödie«, Ausgabe 4/2012](http://archiv.dante.de/DTK/PDF/komoedie_2012_4.pdf),
 Seite 58–73.
 
@@ -127,11 +127,12 @@ Seiten.
 
 Die Vorschriften für die Seitenränder und den Textbereich sind
 [auf TeX.SX](https://tex.stackexchange.com/q/59932) wie folgt angegeben:
-> All text in one-and-onehalf inches from the left [\dots] Begin the letter
+> All text in one-and-onehalf inches from the left […] Begin the letter
 > two inches from the top [\dots] The maximum line length should not exeed six
-> inches [\dots] If additional pages are needed, the left-hand margin of the
+> inches […] If additional pages are needed, the left-hand margin of the
 > letter should be maintained, but the text may be started one inch from the
 > top.
+
 Die [zugehörige Abbildung](https://i.stack.imgur.com/9u6Cr.gif) gibt außerdem
 einen rechten Rand von fünfachtel Zoll und einen unteren Rand von einem halben
 Zoll an.
@@ -211,6 +212,7 @@ Bezüglich der Schrift ist [auf TeX.SX](https://tex.stackexchange.com/q/59932)
 lapidar vermerkt:
 > The format shown here is typeset in ITC Stone Serif, 9.5 on 12, the
 >  commended typeface for University correspondence.
+
 Ich interpretiere diese Angabe so, dass die Schrift `ITC Stone Serif` in der
 Größe 9,5 Punkt, mit einem Grundlinienabstand von 12 Punkt verwendet werden
 soll. Dazu ist zu erwähnen, dass `ITC Stone Serif` eine kommerzielle Schrift
@@ -315,6 +317,7 @@ tatsächlich dich nur 9,5bp verwendet werden. Die Vorgabe ist also eingehalten.
 Bezüglich der Absatzformatierung ist [auf
 TeX.SX](https://tex.stackexchange.com/q/59932) zum einen die Angabe:
 > Paragraphs are indicated by one line space, with no indention.
+
 zu finden. Darüber hinaus zeigt [die
 Abbildung](https://i.stack.imgur.com/9u6Cr.gif), dass mit linksbündigem
 Flattersatz ohne Trennung gearbeitet werden soll. Beides ist rasch
@@ -414,6 +417,7 @@ Briefkopf angegeben:
 > crimson line in the Washington State University signature. Begin the letter
 > two inches from the top, with the date followed by two line spaces, then the
 > address, another line space, then the salutation.
+
 Das sind eine Menge Informationen.
 
 Beginnen wir mit dem Briefkopf:
@@ -525,6 +529,7 @@ solcher auch nicht verwendet wird.
 
 Bevor wir zum Fuß kommen, beachten wir noch die Angabe
 > After the complimentary close, allow five line spaces fot the signature.
+
 bezüglich der Signatur:
 ```latex
 \setplength{sigbeforevskip}{5\baselineskip}
