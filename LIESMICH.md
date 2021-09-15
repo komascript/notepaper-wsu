@@ -583,8 +583,8 @@ vollständig definiert.
 ### Personalisierung
 
 Bevor der erste Brief mit dem neuen, nachgebauten Layout erstellt wird, sollte
-der Absender noch eine weitere \emph{LCO}-Datei mit seinen persönlichen Daten
-erstellen.
+der Absender noch eine weitere LCO-Datei [`wsu-johndoe.lco`](wsu-johndoe.lco)
+mit seinen persönlichen Daten erstellen.
 ```latex
 \LoadLetterOption{wsu}
 
