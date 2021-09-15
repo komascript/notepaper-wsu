@@ -579,3 +579,81 @@ Trennzeichen umdefiniert wird, wenn ein Feld ausgegeben wurde.
 
 Damit ist die Form des Briefbogens aber auch das Layout der Folgeseiten
 vollständig definiert.
+
+### Personalisierung
+
+Bevor der erste Brief mit dem neuen, nachgebauten Layout erstellt wird, sollte
+der Absender noch eine weitere \emph{LCO}-Datei mit seinen persönlichen Daten
+erstellen.
+```latex
+\LoadLetterOption{wsu}
+
+\setkomavar{date}{\today}
+\setkomavar{signature}{John Doe\\
+  Vice President}
+\setkomavar{office}{Office of University Publications and Printing}
+\setkomavar{fromaddress}{PO Box 123456\\ Pullman, WA 12345-6789}
+\setkomavar{fromphone}{555-335-3518}
+\setkomavar{fromfax}{555-335-8568}
+\setkomavar{fromemail}{publications@wsu.invalid}
+\setkomavar{fromurl}{www.wsu-pub.invalid/publications}
+```
+
+## Abwandlung: Verwendung von `geometry`
+
+Wie bereits erwähnt, könnte man für die Einstellung des Seitenspiegels in
+`wsu.lco` auch das Paket `geometry` verwenden. Der Code dazu
+könnte beispielsweise so aussehen:
+```latex
+\if@atdocument
+  \scr@ifundefinedorrelax{newgeometry}{%
+    \LCOError{wsu}{%
+      command `\string\newgeometry' missing%
+    }{%
+      This LCO needs package `geometry', but it's to late to load it
+      myself.\MessageBreak
+      You either should load this LCO before
+      \string\begin{document},\MessageBreak
+      or load package `geometry' yourself.%
+    }%
+  }{%
+    \newgeometry{left=1.5in,right=.625in,top=1in,includefoot,bottom=.5in}%
+    \ifdim \textwidth>6in
+      \newgeometry{left=1.5in,width=6in,top=1in,includefoot,bottom=.5in}%
+    \fi
+  }%
+\else
+  \RequirePackage{geometry}%
+  \geometry{left=1.5in,right=.625in,top=1in,includefoot,bottom=.5in}%
+  \AtBeginDocument{%
+    \ifdim \textwidth>6in
+      \newgeometry{left=1.5in,width=6in,top=1in,includefoot,bottom=.5in}%
+    \fi
+  }%
+\fi
+```
+Nachteilig dabei ist, dass für doppelseitige Dokumente nur entweder der linke
+Rand von geraden Seiten auf fünfachtel Zoll festgelegt werden kann oder die
+Breite des Text auf maximal sechs Zoll. Eine Kombination beider Möglichkeiten
+wäre nur mit Tricks möglich. Entweder müsste man Vorabberechnungen oder
+nachträgliche Vergleiche anstellen und gegebenenfalls `geometry` sogar
+mehrfach die Ränder einstellen lassen. Der Aufwand dafür wäre kaum geringer
+als die direkte Festlegung der Ränder und des Textbereichs wie sie bereits
+gezeigt wurde. Mir erscheint daher im konkreten Fall die zuvor gewählte
+Ausnahme von der Regel, dass für konkrete Randangaben `geometry` verwendet
+werden sollte, angebracht.
+
+## Zusammenfassung
+
+Es wurde gezeigt, wie man mit den Mitteln der LCO-Datei ein gegebenes
+Brieflayout nachbilden kann. Insbesondere wurde der Umgang mit Pseudo-Längen
+und Variablen vorgeführt, wie man neue Optionen in LCO-Dateien definieren
+kann, und wie das Nachladen von Paketen zu handhaben ist. Beispielhaft wurde
+auch die Verbesserung von extern verfügbaren, suboptimalen Grafikdateien
+erwähnt.
+
+Abschließend sei ein [Beispielbrief](wsu-brief.tex) gezeigt. Dieser wurde zur
+Verdeutlichung der vorgegebenen Ränder mit einigen Hilfslinien versehen und
+bemaßt.
+
+![[Beispielbrief](wsu-brief.png)](wsu-brief.png)

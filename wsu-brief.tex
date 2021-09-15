@@ -1,0 +1,74 @@
+%
+% wsu-brief.tex
+% Copyright (c) 2012–2021 Markus Kohm
+%                         komascript at gmx dot info
+%
+% All rights reserved.
+%
+% This file is and example for `notepaper-wsu'.
+% See https://github.com/komascript/notepaper-wsu for more information.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[paper=letter,pagesize]{scrlttr2}
+%\documentclass[paper=letter,pagesize,nostone]{scrlttr2}% If you do not have the font ITC Stone LT
+\LoadLetterOption{wsu-johndoe}% Load the users LCO with all settings.
+\usepackage[USenglish]{babel}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Following is for demonstration only
+\usepackage{picture,eso-pic,lipsum}
+\AddToShipoutPicture*{%
+  \color{gray}%
+  \AtPageUpperLeft{%
+    \multiput(1.5in,0)(0,-.01\paperheight){100}{\line(0,-1){.005\paperheight}}%
+    \put(0,-.333\paperheight){\vector(1,0){1.5in}}%
+    \put(1.5in,-.333\paperheight){\vector(-1,0){1.5in}}%
+    \put(0,-.333\paperheight){\makebox(1.5in,\baselineskip)[c]{1.5"}}%
+    \multiput(0,-2in)(.01\paperwidth,0){100}{\line(1,0){.005\paperwidth}}%
+    \put(.5\paperwidth,0){\vector(0,-1){2in}}%
+    \put(.5\paperwidth,-2in){\vector(0,1){2in}}%
+    \put(.5\paperwidth,-2in){\makebox(0,2in)[l]{ 2"}}%
+    \put(\paperwidth,0){%
+      \multiput(-.625in,0)(0,-.01\paperheight){100}{\line(0,-1){.005\paperheight}}%
+      \put(-.625in,-.333\paperheight){\vector(1,0){.625in}}%
+      \put(0,-.333\paperheight){\vector(-1,0){.625in}}%
+      \put(-.625in,-.333\paperheight){\makebox(.625in,\baselineskip)[c]{.625"}}%
+    }%
+  }%
+  \AtPageLowerLeft{%
+    \multiput(0,.5in)(.01\paperwidth,0){100}{\line(1,0){.005\paperwidth}}%
+    \put(.5\paperwidth,0){\vector(0,1){.5in}}%
+    \put(.5\paperwidth,0.5in){\vector(0,-1){.5in}}%
+    \put(.5\paperwidth,0){\makebox(0,.5in)[l]{ .5"}}%
+  }%
+  \AtTextCenter{%
+    \makebox(0,0)[c]{\rotatebox{45}{\color{yellow}\Huge Draft of an example}}%
+  }
+}
+\setkomavar{date}{Date}
+\setkomavar{signature}{Sender's Name\\
+  Title}
+\setkomavar{fromlogo}{\includegraphics[height=.5in]{wsuSig4cW-new}}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% Note: You should always use 5 lines for the addressee!!!
+\begin{letter}{%
+    Addresse Name\\
+    Company Name\\
+    Department or PO Box Number\\
+    Street Address\\
+    City, State 00000-0000
+}
+\opening{Dear Addressee,}
+\lipsum[1-2]
+\closing{Complimentary close}
+\end{letter}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
