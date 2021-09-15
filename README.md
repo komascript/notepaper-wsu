@@ -558,7 +558,7 @@ personal data.
 \setkomavar{fromurl}{www.wsu-pub.invalid/publications}
 ```
 
-# Variation: Use of `geometry`.
+# Variation: Use of `geometry`
 
 As already mentioned, you could also use the `geometry` package for setting
 the page area in `wsu.lco`. The code for this could for example look like
