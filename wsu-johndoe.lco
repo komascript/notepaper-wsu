@@ -1,0 +1,32 @@
+%
+% wsu-johndoe.lco
+% Copyright (c) 2012-2021 Markus Kohm
+%                         komascript at gmx dot info
+%
+% All rights reserved.
+%
+% This file is and example for `notepaper-wsu'.
+% See https://github.com/komascript/notepaper-wsu for more information.
+%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\LoadLetterOption{wsu}
+
+\setkomavar{date}{\today}
+\setkomavar{signature}{John Doe\\
+  Vice President}
+\setkomavar{office}{Office of University Publications and Printing\\
+  Vice President}
+\setkomavar{fromaddress}{PO Box 123456\\ Pullman, WA 12345-6789}
+\setkomavar{fromphone}{555-335-3518}
+\setkomavar{fromfax}{555-335-8568}
+\setkomavar{fromemail}{publications@wsu.invalid}
+\setkomavar{fromurl}{www.wsu-pub.invalid/publications}
+
+% That's all!
+\endinput
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "wsu-letter.tex"
+%%% End:
