@@ -3,8 +3,9 @@
 Ziel dieses Projekts ist die Erstellung einer *Letter Configuration Option*
 (LCO-Datei) zur Umsetzung einer Corporate Identity. Als Vorlage für diese
 Beispielimplementierung dient das Briefpapier der Washington State
-University. Dieses Beispiel basiert meinerm Artikel in [»Die TeXnische Komödie«, Ausgabe
-4/2012](http://archiv.dante.de/DTK/PDF/komoedie_2012_4.pdf), Seite 58–.
+University. Dieses Beispiel basiert meinerm Artikel in [»Die TeXnische
+Komödie«, Ausgabe 4/2012](http://archiv.dante.de/DTK/PDF/komoedie_2012_4.pdf),
+Seite 58–73.
 
 ## Vorbereitung
 
